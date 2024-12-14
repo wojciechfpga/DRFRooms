@@ -28,8 +28,7 @@ services:
 
   adminservice:
     build: ./adminservice
-    command: >
-      daphne -b 0.0.0.0 -p 8000 adminservice.asgi:application
+    command: sh -c "cd adminservice && daphne -b 0.0.0.0 -p 8000 adminservice.asgi:application"
     volumes:
       - .:/app
     ports:
