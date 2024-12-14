@@ -1,28 +1,6 @@
 version: '3.8'
 
 services:
-  node_subscription:
-    build: ./node_subscription
-    ports:
-      - "4000:4000"
-    depends_on:
-      - db
-  backend:
-    build: ./backend
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - db
-      - mongodb
-    environment:
-      - FLASK_APP=app:create_app
-      - FLASK_ENV=development
-      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:password@db:5432/conference
-      - SECRET_KEY=wojciechsecret
-      - MONGO_URI=mongodb://mongodb:27017
-
   db:
     image: postgres:13
     environment:
@@ -47,6 +25,23 @@ services:
     depends_on:
       - db
 
+
+  adminservice:
+    build: ./adminservice
+    command: >
+      daphne -b 0.0.0.0 -p 8000 adminservice.asgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - mongodb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=conference
+      - POSTGRES_HOST=db
 
 volumes:
   db_data:
