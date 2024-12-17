@@ -4,3 +4,4 @@ channels
 channels-redis
 daphne
 psycopg2-binary
+asyncio
