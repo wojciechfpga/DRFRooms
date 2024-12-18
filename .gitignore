@@ -48,8 +48,7 @@ __pycache__/
 *.iml
 
 # Docker
-*.dockerfile
-docker-compose.override.yml
+
 
 # Environment Variables
 .env
@@ -58,3 +57,41 @@ docker-compose.override.yml
 node_modules/
 dist/
 /node_subscription/dist/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+front-end/next-env.d.ts
+front-end/node_modules
+front-end/.pnp
+front-end/.pnp.js
+front-end/.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+front-end//.next/
+front-end//out/
+
+# production
+front-end//build
+
+# misc
+front-end/.DS_Store
+front-end/*.pem
+
+# debug
+front-end/npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+front-end/.env*.local
+
+# vercel
+front-end/.vercel
+
+# typescript
+front-end/*.tsbuildinfo
+front-end/next-env.d.ts
