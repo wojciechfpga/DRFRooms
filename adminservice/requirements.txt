@@ -5,3 +5,4 @@ channels-redis
 daphne
 psycopg2-binary
 asyncio
+django-cors-headers
