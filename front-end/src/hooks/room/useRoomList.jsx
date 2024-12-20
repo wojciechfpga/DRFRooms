@@ -11,17 +11,17 @@ export const useRoomList = () => {
   }, []);
 
   const addRoom = async (room) => {
-    const response = await axios.post('http://localhost:8000/adminapi/rooms', room);
+    const response = await axios.post('/adminapi/rooms', room);
     setRooms([...rooms, response.data]);
   };
 
   const updateRoom = async (room) => {
-    await axios.put(`/api/rooms/${room.id}`, room);
+    await axios.put(`/adminapi/rooms/${room.id}/`, room);
     setRooms(rooms.map((r) => (r.id === room.id ? room : r)));
   };
 
   const deleteRoom = async (id) => {
-    await axios.delete(`/api/rooms/${id}`);
+    await axios.delete(`/adminapi/rooms/${id}/`);
     setRooms(rooms.filter((room) => room.id !== id));
   };
 
