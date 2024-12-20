@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import * as fn from './../../services/apiService'
 export const useRoomList = () => {
   const [rooms, setRooms] = useState([]);
 
@@ -11,17 +11,17 @@ export const useRoomList = () => {
   }, []);
 
   const addRoom = async (room) => {
-    const response = await axios.post('/adminapi/rooms', room);
+    const response = await fn.apiAdminPostSendRoom(room,'none')
     setRooms([...rooms, response.data]);
   };
 
   const updateRoom = async (room) => {
-    await axios.put(`/adminapi/rooms/${room.id}/`, room);
+    await fn.apiAdminPutUpdateRoom("none", room)
     setRooms(rooms.map((r) => (r.id === room.id ? room : r)));
   };
 
   const deleteRoom = async (id) => {
-    await axios.delete(`/adminapi/rooms/${id}/`);
+    await fn.apiAdminDeleteRoom("none",id)
     setRooms(rooms.filter((room) => room.id !== id));
   };
 
