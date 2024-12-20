@@ -16,4 +16,3 @@ EXPOSE 8000
 
 # Default command to run Daphne
 CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "adminservice.asgi:application"]
-
