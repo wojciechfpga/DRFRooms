@@ -7,7 +7,7 @@ export const useRoomList = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/adminapi/rooms').then((response) => setRooms(response.data));
+    axios.get('/adminapi/rooms').then((response) => setRooms(response.data));
   }, []);
 
   const addRoom = async (room) => {
