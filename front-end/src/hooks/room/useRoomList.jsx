@@ -7,7 +7,7 @@ export const useRoomList = () => {
   const [rooms, setRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
-
+  const [newItem, setNewItem] = useState(false);
   useEffect(() => {
     const fetchRooms = async () => {
       setIsLoading(true);
@@ -21,7 +21,7 @@ export const useRoomList = () => {
       }
     };
     fetchRooms();
-  }, []);
+  }, [newItem]);
 
   const addRoom = async (room) => {
     setIsLoading(true);
@@ -30,6 +30,7 @@ export const useRoomList = () => {
       setRooms([...rooms, response.data]);
     } finally {
       setIsLoading(false);
+      setNewItem(!newItem)
     }
   };
 
