@@ -53,5 +53,21 @@ services:
       POSTGRES_DB: conference
       POSTGRES_HOST: db
 
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27018:27017" 
+    volumes:
+      - mongo_data:/data/db
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
 volumes:
   db_data:
+  mongo_data:
