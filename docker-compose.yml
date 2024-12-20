@@ -5,9 +5,6 @@ services:
     build: ./front-end
     ports:
       - "3000:3000"
-    volumes:
-      - ./front-end:/app
-      - /app/node_modules
     depends_on:
       - backend
     environment:
@@ -17,8 +14,6 @@ services:
     build: ./backend
     ports:
       - "5000:5000"
-    volumes:
-      - ./backend:/app
     depends_on:
       - db
       - mongodb
@@ -56,9 +51,7 @@ services:
 
   adminservice:
     build: ./adminservice
-    command: sh -c "cd adminservice && daphne -b 0.0.0.0 -p 8000 adminservice.asgi:application"
-    volumes:
-      - .:/app
+    command: sh -c "daphne -b 0.0.0.0 -p 8000 adminservice.asgi:application"
     ports:
       - "8000:8000"
     depends_on:
@@ -69,6 +62,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: conference
       POSTGRES_HOST: db
+
 
 volumes:
   db_data:
