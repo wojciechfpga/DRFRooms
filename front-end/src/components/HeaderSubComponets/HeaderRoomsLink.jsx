@@ -14,6 +14,12 @@ const HeaderRoomsLink = () => {
                     Admin rooms
                 </h2>
             </Link>
+
+            <Link href="/reservations">
+                <h2 className="text-white py-2 px-4 border-none">
+                    Reservations
+                </h2>
+            </Link>
         </div>
     );
 }
