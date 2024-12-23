@@ -1,11 +1,13 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const ReservationsPage = () => {
   const [reservations, setReservations] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const router = useRouter();
 
   const fetchReservations = async (page) => {
     try {
@@ -30,6 +32,10 @@ const ReservationsPage = () => {
     }
   };
 
+  const handleReservationClick = (id) => {
+    router.push(`/reservations/${id}`);
+  };
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Reservations</h1>
@@ -37,7 +43,8 @@ const ReservationsPage = () => {
         {reservations.map((reservation) => (
           <div
             key={reservation.id}
-            className="p-4 border border-gray-300 rounded shadow-sm"
+            className="p-4 border border-gray-300 rounded shadow-sm cursor-pointer hover:bg-gray-100"
+            onClick={() => handleReservationClick(reservation.id)}
           >
             <h2 className="text-lg font-semibold">{reservation.room.name}</h2>
             <p>
