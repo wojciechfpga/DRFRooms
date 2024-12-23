@@ -41,7 +41,7 @@ const ReservationsPage = () => {
           >
             <h2 className="text-lg font-semibold">{reservation.room.name}</h2>
             <p>
-              Reserved by: <span className="font-medium">{reservation.user.name}</span>
+              Reserved by: <span className="font-medium">{reservation.user.username}</span>
             </p>
             <p>
               From: {new Date(reservation.start_time).toLocaleString()} To:{" "}
