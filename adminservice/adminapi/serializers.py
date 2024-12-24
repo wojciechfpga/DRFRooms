@@ -9,7 +9,7 @@ class RoomSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = '__all__'
+        fields = ['username', 'role']
 
 class ReservationSerializer(serializers.ModelSerializer):
     room = RoomSerializer()
@@ -18,3 +18,5 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservations
         fields = '__all__'
+
+
