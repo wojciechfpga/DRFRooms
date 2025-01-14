@@ -20,6 +20,12 @@ const HeaderRoomsLink = () => {
                     Reservations
                 </h2>
             </Link>
+
+            <Link href="/users">
+                <h2 className="text-white py-2 px-4 border-none">
+                    Users
+                </h2>
+            </Link>
         </div>
     );
 }

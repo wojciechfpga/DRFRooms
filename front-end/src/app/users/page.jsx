@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-
+import Link from "next/link";
 export default function UsersPage() {
   const [users, setUsers] = useState([]); // Lista użytkowników
   const [page, setPage] = useState(1); // Numer aktualnej strony
@@ -54,6 +54,7 @@ export default function UsersPage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Users</h1>
+      <Link href="/searchuser"><h2>Search user</h2></Link>
       <div className="space-y-4">
         {users.map((user, index) => (
           <div
