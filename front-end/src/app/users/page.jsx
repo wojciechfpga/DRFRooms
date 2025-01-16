@@ -16,6 +16,7 @@ export default function UsersPage() {
     try {
       const res = await fetch(`/adminapi/users/?page=${page}`);
       const data = await res.json();
+      console.log(data)
       setUsers((prev) => [...prev, ...data.results]);
       setHasMore(!!data.next); // Jeśli jest link `next`, to mamy więcej stron
       setPage((prev) => prev + 1);
@@ -57,6 +58,10 @@ export default function UsersPage() {
       <Link href="/searchuser"><h2>Search user</h2></Link>
       <div className="space-y-4">
         {users.map((user, index) => (
+         <Link 
+           key={user.username} 
+           href={`/users/${user.id}/`} // Dynamicznie generujemy ścieżkę z user.id
+        >
           <div
             key={user.username}
             ref={index === users.length - 1 ? lastUserElementRef : null} // Obserwujemy ostatni element
@@ -65,6 +70,7 @@ export default function UsersPage() {
             <p className="font-semibold">{user.username}</p>
             <p className="text-gray-600">Role: {user.role || 'N/A'}</p>
           </div>
+          </Link>
         ))}
         {loading && <p>Loading...</p>}
         {!hasMore && !loading && <p>No more users to display.</p>}

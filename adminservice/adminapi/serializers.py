@@ -9,7 +9,7 @@ class RoomSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = ['username', 'role']
+        fields = ['id', 'username', 'role']
 
 class ReservationSerializer(serializers.ModelSerializer):
     room = RoomSerializer()

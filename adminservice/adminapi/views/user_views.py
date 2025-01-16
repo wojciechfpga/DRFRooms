@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, UpdateAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter
 from rest_framework.exceptions import NotFound
@@ -27,3 +27,15 @@ class UpdateUserRoleView(UpdateAPIView):
             return Users.objects.get(pk=user_id)
         except Users.DoesNotExist:
             raise NotFound("User not found")
+        
+class RetrieveUserView(RetrieveAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        user_id = self.kwargs.get('pk')
+        try:
+            return Users.objects.get(pk=user_id)
+        except Users.DoesNotExist:
+            raise NotFound("User not found")
+        
